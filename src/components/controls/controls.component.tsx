@@ -50,7 +50,7 @@ export default function Controls() {
           onChange={handleChange}
         >
           <MenuItem value='' disabled><em>Instrument</em></MenuItem>
-          {Object.entries(Instrument).map(([value], key) => <MenuItem key={key} value={value}>{value}</MenuItem>)}
+          {Object.entries(Instrument).map(([value, instrument], key) => <MenuItem key={key} value={value}>{instrument}</MenuItem>)}
         </Select>
       </FormControl>
       { isOn ? <PlayCircleFilledIcon style={{ cursor: 'pointer', margin: '4px' }} onClick={() => setOn(!isOn)} /> : <PlayCircleOutlineIcon style={{ cursor: 'pointer', margin: '4px' }} onClick={() => setOn(!isOn)} /> }
