@@ -8,7 +8,7 @@ import './App.scss';
 import Board from './components/board/board.component';
 
 function App() {
-  const prefersDarkMode = true; // TODO: add option to set;
+  // const prefersDarkMode = true; // TODO: add option to set;
 
   const theme = React.useMemo(
     () =>
@@ -16,10 +16,10 @@ function App() {
         palette: {
           type: 'dark',
           primary: {
-            main: '#63d8ce',
+            main: '#90a4ae',
           },
           secondary: {
-            main: '#f9aa3b',
+            main: '#63d8ce',
           }
         },
       }),
