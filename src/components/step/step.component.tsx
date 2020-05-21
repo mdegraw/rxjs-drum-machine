@@ -7,13 +7,13 @@ const useStyles = makeStyles((theme: Theme) =>
     off: {
       height: 30,
       width: 20,
-      backgroundColor: '#63d8ce',
+      backgroundColor: '#90a4ae',
       cursor: 'pointer',
     },
     on: {
       height: 30,
       width: 20,
-      backgroundColor: '#00ffd0',
+      backgroundColor: '#63d8ce',
       cursor: 'pointer',
     },
   }),

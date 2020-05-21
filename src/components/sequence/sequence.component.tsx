@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
+import { Observable } from 'rxjs';
+
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 import { range } from '../../utils/range.util';
 import Step from '../step/step.component';
+
+interface ISequenceProps {
+  clock$: Observable<number>;
+}
 
 const STEPS = 16;
 const DEFAULT_STEPS = range(1, STEPS).map(() => false);
@@ -17,7 +23,8 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function Sequence() {
+export default function Sequence({ clock$ }: ISequenceProps) {
+  
   const [steps] = useState(DEFAULT_STEPS);
   console.log('steps')
   console.log(steps)

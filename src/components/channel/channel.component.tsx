@@ -1,9 +1,14 @@
 import React from 'react';
+import { Observable } from 'rxjs';
 import Box from '@material-ui/core/Box';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 import Sequence from '../sequence/sequence.component';
 import Controls from '../controls/controls.component';
+
+interface IChannelProps {
+  clock$: Observable<number>;
+}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -12,7 +17,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
-export default function Channel() {
+
+export default function Channel({ clock$ }: IChannelProps) {
   const classes = useStyles();
 
   return (
@@ -25,8 +31,8 @@ export default function Channel() {
       width='840px'
       marginBottom='5px'
     >
-      <Controls />
-      <Sequence />
+      <Controls clock$={clock$} />
+      <Sequence clock$={clock$} />
     </Box>
   );
 }
