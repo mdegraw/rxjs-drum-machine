@@ -1,16 +1,20 @@
 import React from 'react';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import Box from '@material-ui/core/Box';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 import Sequence from '../sequence/sequence.component';
 import Controls from '../controls/controls.component';
+import { IState } from '../../interfaces/state.interface';
+import { getInitialChannel, IChannel } from '../../interfaces/channel.interface';
+// import { IChannel, INITIAL_CHANNEL } from '../../interfaces/channel.interface';
 
 interface IChannelProps {
-  clock$: Observable<number>;
+  id: number;
+  clock$: Observable<IState>;
 }
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       padding: '10px !important',
@@ -18,8 +22,9 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function Channel({ clock$ }: IChannelProps) {
+export default function Channel({ id, clock$ }: IChannelProps) {
   const classes = useStyles();
+  const channel$ = new BehaviorSubject<IChannel>(getInitialChannel(id));
 
   return (
     <Box
@@ -31,8 +36,8 @@ export default function Channel({ clock$ }: IChannelProps) {
       width='840px'
       marginBottom='5px'
     >
-      <Controls clock$={clock$} />
-      <Sequence clock$={clock$} />
+      <Controls channel$={channel$} />
+      <Sequence clock$={clock$} channel$={channel$} />
     </Box>
   );
 }

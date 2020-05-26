@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BehaviorSubject } from 'rxjs';
 
 import Box from '@material-ui/core/Box';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
@@ -9,6 +10,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 import { Instrument } from '../../enums/instrument.enum';
+import { IChannel } from '../../interfaces/channel.interface';
+
+interface IControlProp {
+  channel$: BehaviorSubject<IChannel>;
+}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -22,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function Controls() {
+export default function Controls({ channel$ }: IControlProp) {
   const [isOn, setOn] = useState(false);
   const [instrument, setInstrument] = useState('');
 
@@ -30,6 +36,15 @@ export default function Controls() {
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setInstrument(event.target.value as string);
+    updateInstrument(event.target.value as Instrument)
+
+  };
+
+  const updateInstrument = (newInstrument: Instrument) => {
+    channel$.next({
+      ...channel$.value,
+      instrument: newInstrument, 
+    });
   };
 
   return (

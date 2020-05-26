@@ -1,7 +1,22 @@
 import { Instrument } from "../enums/instrument.enum";
 
 export interface IChannel {
-  instrument: Instrument;
+  id: number;
+  instrument: Instrument | null;
+  play: boolean;
   volume: number;
-  steps: number[];
+  steps: boolean[];
 }
+
+export const getInitialChannel = (id: number) => ({
+  id,
+  instrument: null,
+  play: true,
+  volume: 100,
+  steps: [
+    false, false, false, false,
+    false, false, false, false,
+    false, false, false, false,
+    false, false, false, false,
+  ],
+});
