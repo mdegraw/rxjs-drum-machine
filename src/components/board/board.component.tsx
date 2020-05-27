@@ -10,6 +10,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Channel from '../channel/channel.component';
 import { clock } from '../../utils/clock.util';
 import { IState } from '../../interfaces/state.interface';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -19,6 +20,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     root: {
       padding: '10px !important',
+    },
+    channel: {
+      padding: '3px 10px !important'
     },
     button: {
       margin: theme.spacing(1),
@@ -59,9 +63,23 @@ export default function Board() {
       display='flex'
       flexDirection='column'
       border={1}
-      width='860px'
+      width='880px'
     >
-      {channels}
+      <Box
+        className={classes.root}
+        display='flex'
+        flexDirection='row'
+      >
+        <Typography variant='h5'>Simple Step-Sequencer</Typography>
+      </Box>
+    
+      {channels.map(channel => (
+        <Box
+          className={classes.channel}
+          display='flex'
+          flexDirection='row'
+        >{channel}</Box>
+      ))}
       <Box
         className={classes.root}
         display='flex'
