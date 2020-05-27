@@ -8,27 +8,28 @@ interface IStepProp {
   isOn: boolean;
   updateSteps: (step: number, isOn: boolean) => void;
 }
+const baseStyle = {
+  height: 30,
+  width: 20,
+  backgroundColor: '#90a4ae',
+  cursor: 'pointer',
+};
 
 const useStyles = makeStyles(() =>
   createStyles({
-    off: {
-      height: 30,
-      width: 20,
-      backgroundColor: '#90a4ae',
-      cursor: 'pointer',
-    },
+    off: baseStyle,
     on: {
-      height: 30,
-      width: 20,
+      ...baseStyle,
       backgroundColor: '#63d8ce',
-      cursor: 'pointer',
     },
     highlight: {
-      height: 30,
-      width: 20,
+      ...baseStyle,
       backgroundColor: '#8FEEF3',
-      cursor: 'pointer',
     },
+    highlightOn:{
+      ...baseStyle,
+      backgroundColor: '#c4fcff',
+    }
   }),
 );
 
@@ -40,7 +41,9 @@ export default function Step({ step, isOn, isCurrentStep, updateSteps }: IStepPr
   return (
     <Paper
       square={true}
-      className={isCurrentStep
+      className={isCurrentStep && on
+        ? classes.highlightOn
+        : isCurrentStep
         ? classes.highlight
         : on
         ? classes.on

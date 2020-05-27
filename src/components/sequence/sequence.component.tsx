@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Observable, combineLatest, BehaviorSubject } from 'rxjs';
 import { filter } from 'rxjs/operators';
-
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
@@ -10,6 +9,7 @@ import { range } from '../../utils/range.util';
 import Step from '../step/step.component';
 import { IChannel } from '../../interfaces/channel.interface';
 import { IState } from '../../interfaces/state.interface';
+import { InstrumentConfig } from '../../enums/instrument.enum';
 
 interface ISequenceProps {
   clock$: Observable<IState>;
@@ -47,14 +47,13 @@ export default function Sequence({ clock$, channel$ }: ISequenceProps) {
       .pipe(
         filter(([{ play }]: [IState, IChannel]) => play),
       )
-      .subscribe(([{ step }, channel]: [IState, IChannel]) => {
-  
-        setSteps(channel.steps);
+      .subscribe(([{ step }, { steps, instrument}]: [IState, IChannel]) => {
+        setSteps(steps);
         setCurrentStep(step);
 
-        if (channel.steps[step]) {
-          // playDrum();
-          console.log('\n----PLAY----\n')
+        if (instrument && steps[step]) {
+          // console.log('\n----PLAY----\n')
+          InstrumentConfig[instrument]?.trigger();
         }
       }
       );

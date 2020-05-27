@@ -29,6 +29,7 @@ export default function Board() {
     play$,
   ));
   const updatePlay = (isPlay: boolean) => {
+    console.log('in update play isPlay ', isPlay)
     play$.next({ play: isPlay });
   };
 
@@ -67,6 +68,7 @@ export default function Board() {
           <Button
             variant='contained'
             color='primary'
+            disabled={channels.length > 9}
             className={classes.button}
             startIcon={<AddIcon />}
             onClick={addChannel}
