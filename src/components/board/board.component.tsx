@@ -13,6 +13,10 @@ import { IState } from '../../interfaces/state.interface';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    wrapper: {
+      padding: '10px !important',
+      margin: '0 auto',
+    },
     root: {
       padding: '10px !important',
     },
@@ -51,7 +55,7 @@ export default function Board() {
   
   return (
     <Box
-      className={classes.root}
+      className={classes.wrapper}
       display='flex'
       flexDirection='column'
       border={1}

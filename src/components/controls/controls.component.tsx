@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { BehaviorSubject } from 'rxjs';
 
 import Box from '@material-ui/core/Box';
-import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
+import PauseCircleOutlineIcon from '@material-ui/icons/PauseCircleOutline';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -68,7 +68,7 @@ export default function Controls({ channel$ }: IControlProp) {
           {Object.entries(Instrument).map(([value, instrument], key) => <MenuItem key={key} value={value}>{instrument}</MenuItem>)}
         </Select>
       </FormControl>
-      { isOn ? <PlayCircleFilledIcon style={{ cursor: 'pointer', margin: '4px' }} onClick={() => setOn(!isOn)} /> : <PlayCircleOutlineIcon style={{ cursor: 'pointer', margin: '4px' }} onClick={() => setOn(!isOn)} /> }
+      { isOn ? <PlayCircleOutlineIcon style={{ cursor: 'pointer', margin: '4px' }} onClick={() => setOn(!isOn)} /> : <PauseCircleOutlineIcon style={{ cursor: 'pointer', margin: '4px' }} onClick={() => setOn(!isOn)} /> }
     </Box>
   );
 }
