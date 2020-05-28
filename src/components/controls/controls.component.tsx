@@ -41,6 +41,14 @@ export default function Controls({ channel$ }: IControlProp) {
     });
   };
 
+  const updateVolume = (volume: number, isOn: boolean) => {
+    setOn(isOn);
+    channel$.next({
+      ...channel$.value,
+      volume, 
+    });
+  };
+
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setInstrument(event.target.value as string);
     updateInstrument(event.target.value as Instrument)
@@ -67,7 +75,7 @@ export default function Controls({ channel$ }: IControlProp) {
           {Object.entries(Instrument).map(([value, instrument], key) => <MenuItem key={key} value={value}>{instrument}</MenuItem>)}
         </Select>
       </FormControl>
-      { isOn ? <VolumeOffIcon style={{ cursor: 'pointer', margin: '4px' }} onClick={() => setOn(!isOn)} /> : <VolumeUpIcon style={{ cursor: 'pointer', margin: '4px' }} onClick={() => setOn(!isOn)} /> }
+      { isOn ? <VolumeOffIcon style={{ cursor: 'pointer', margin: '4px' }} onClick={() => updateVolume(100, !isOn)} /> : <VolumeUpIcon style={{ cursor: 'pointer', margin: '4px' }} onClick={() => updateVolume(0, !isOn)} /> }
     </Box>
   );
 }

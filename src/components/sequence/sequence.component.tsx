@@ -47,11 +47,11 @@ export default function Sequence({ clock$, channel$ }: ISequenceProps) {
       .pipe(
         filter(([{ play }]: [IState, IChannel]) => play),
       )
-      .subscribe(([{ step }, { steps, instrument}]: [IState, IChannel]) => {
+      .subscribe(([{ step }, { steps, instrument, volume }]: [IState, IChannel]) => {
         setSteps(steps);
         setCurrentStep(step);
 
-        if (instrument && steps[step]) {
+        if (instrument && volume && steps[step]) {
           // console.log('\n----PLAY----\n')
           InstrumentConfig[instrument]?.trigger();
         }
