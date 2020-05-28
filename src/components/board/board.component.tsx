@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ConnectableObservable, BehaviorSubject } from 'rxjs';
+import { ConnectableObservable, BehaviorSubject, merge } from 'rxjs';
 import Box from '@material-ui/core/Box';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -30,17 +30,15 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+const play$ = new BehaviorSubject({ play: false });
+const boardEvents$ = merge(play$);
+const clock$ = clock(boardEvents$);
+
+const updatePlay = (isPlay: boolean) => {
+  play$.next({ play: isPlay });
+};
 
 export default function Board() {
-  const play$ = new BehaviorSubject({ play: false });
-  const [clock$] = useState(clock(
-    play$,
-  ));
-  const updatePlay = (isPlay: boolean) => {
-    console.log('in update play isPlay ', isPlay)
-    play$.next({ play: isPlay });
-  };
-
   useEffect(() => {
     const subscription = clock$.subscribe();
     (clock$ as ConnectableObservable<IState>).connect();
@@ -70,7 +68,7 @@ export default function Board() {
         display='flex'
         flexDirection='row'
       >
-        <Typography variant='h5'>Simple Step-Sequencer</Typography>
+        <Typography variant='h5'>Step-Sequencer</Typography>
       </Box>
     
       {channels.map(channel => (

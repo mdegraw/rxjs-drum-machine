@@ -18,7 +18,7 @@ export const clock = (boardEvents$: Observable<any>) =>  boardEvents$.pipe(
       tap((i) => {
         state.step = i;
       }),
-      map(_ => state),
+      map(() => state),
     )
     : NEVER,
   ),

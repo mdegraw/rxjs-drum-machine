@@ -19,7 +19,7 @@ function App() {
             main: '#63d8ce',
           },
           secondary: {
-            main: '#f9aa3b',
+            main: '#d8636d',
           }
         },
       }),
