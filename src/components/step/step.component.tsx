@@ -49,8 +49,8 @@ export default function Step({ step, isOn, isCurrentStep, updateSteps }: IStepPr
         ? classes.on
         : classes.off}
       onClick={() => {
-        setOn(!isOn);
-        updateSteps(step, !isOn);
+        setOn(!on);
+        updateSteps(step, !on);
       }}
     />
   ); 
