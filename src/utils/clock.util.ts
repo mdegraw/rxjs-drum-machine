@@ -14,11 +14,10 @@ export const clock = (boardEvents$: Observable<any>) =>  boardEvents$.pipe(
   ),
   switchMap((state: IState) => state.play
     ? interval(bpmToMs(state.bpm)).pipe(
-      map(i => (i + state.pauseStep) % 16),
-      tap((i) => {
-        state.step = i;
-      }),
-      map(() => state),
+        tap((i) => {
+          state.step = (i + state.pauseStep) % 16;
+        }),
+        map(() => state),
     )
     : NEVER,
   ),

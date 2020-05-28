@@ -7,7 +7,6 @@ import Sequence from '../sequence/sequence.component';
 import Controls from '../controls/controls.component';
 import { IState } from '../../interfaces/state.interface';
 import { getInitialChannel, IChannel } from '../../interfaces/channel.interface';
-// import { IChannel, INITIAL_CHANNEL } from '../../interfaces/channel.interface';
 
 interface IChannelProps {
   id: number;

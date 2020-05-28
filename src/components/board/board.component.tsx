@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { ConnectableObservable, BehaviorSubject, merge } from 'rxjs';
+
 import Box from '@material-ui/core/Box';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import AddIcon from '@material-ui/icons/Add';
+import Typography from '@material-ui/core/Typography';
 
+import BpmControl from '../bpm/bpm.component';
 import Channel from '../channel/channel.component';
 import { clock } from '../../utils/clock.util';
 import { IState } from '../../interfaces/state.interface';
-import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,11 +29,18 @@ const useStyles = makeStyles((theme: Theme) =>
     button: {
       margin: theme.spacing(1),
     },
+    bpmControl: {
+      'margin-left': 'auto',
+    },
   }),
 );
 
 const play$ = new BehaviorSubject({ play: false });
-const boardEvents$ = merge(play$);
+const bpm$ = new BehaviorSubject({ bpm: 130 });
+const boardEvents$ = merge(
+  play$,
+  bpm$,
+);
 const clock$ = clock(boardEvents$);
 
 const updatePlay = (isPlay: boolean) => {
@@ -68,11 +77,13 @@ export default function Board() {
         display='flex'
         flexDirection='row'
       >
-        <Typography variant='h5'>Step-Sequencer</Typography>
+        <Typography variant='h5'>RxJS Step-Sequencer</Typography>
+        <Box className={classes.bpmControl}><BpmControl bpm$={bpm$} /></Box>
       </Box>
     
-      {channels.map(channel => (
+      {channels.map((channel, i) => (
         <Box
+          key={i}
           className={classes.channel}
           display='flex'
           flexDirection='row'

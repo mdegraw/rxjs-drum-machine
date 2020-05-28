@@ -1,6 +1,6 @@
 {
-  "short_name": "Simple Step-Sequencer",
-  "name": "Simple Step-Sequencer",
+  "short_name": "RxJS Step-Sequencer",
+  "name": "RxJS Step-Sequencer",
   "icons": [
     {
       "src": "favicon.ico",
