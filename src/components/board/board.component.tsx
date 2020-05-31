@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ConnectableObservable, BehaviorSubject, merge } from 'rxjs';
 
 import Box from '@material-ui/core/Box';
@@ -13,6 +13,8 @@ import BpmControl from '../bpm/bpm.component';
 import Channel from '../channel/channel.component';
 import { clock } from '../../utils/clock.util';
 import { IState } from '../../interfaces/state.interface';
+import { useObservableEffect } from '../../hooks/use-observable-effect.hook';
+import { noop } from '../../utils/noop.util';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -48,13 +50,7 @@ const updatePlay = (isPlay: boolean) => {
 };
 
 export default function Board() {
-  useEffect(() => {
-    const subscription = clock$.subscribe();
-    (clock$ as ConnectableObservable<IState>).connect();
-    return () => subscription.unsubscribe();
-  },
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  []);
+  useObservableEffect(clock$, noop, () => (clock$ as ConnectableObservable<IState>).connect());
 
   const DEFAULT_CHANNELS = [...Array(1)].map((_, i) => <Channel key={i} id={i} clock$={clock$} />);
 
