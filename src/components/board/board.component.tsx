@@ -95,7 +95,7 @@ export default function Board() {
           <Button
             variant='contained'
             color='primary'
-            disabled={channels.length > 9}
+            disabled={channels.length > 6}
             className={classes.button}
             startIcon={<AddIcon />}
             onClick={addChannel}
