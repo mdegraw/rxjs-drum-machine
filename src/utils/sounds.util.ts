@@ -9,7 +9,6 @@ const clap = new Audio('/sounds/clap.mp3');
 const conga = new Audio('/sounds/conga.mp3');
 const cowbell = new Audio('/sounds/cowbell.mp3');
 
-// useContext?
 export const playKick = () => {
   kick.play();
 }

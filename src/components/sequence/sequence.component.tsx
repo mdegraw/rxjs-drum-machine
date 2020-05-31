@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Observable, combineLatest, BehaviorSubject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
-import { range } from '../../utils/range.util';
 import Step from '../step/step.component';
+
+import { range } from '../../utils/range.util';
 import { IChannel } from '../../interfaces/channel.interface';
 import { IState } from '../../interfaces/state.interface';
 import { InstrumentConfig } from '../../enums/instrument.enum';
+import { useObservableEffect } from '../../hooks/use-observable-effect.hook';
 
 interface ISequenceProps {
   clock$: Observable<IState>;
@@ -42,25 +44,21 @@ export default function Sequence({ clock$, channel$ }: ISequenceProps) {
     });
   };
 
-  useEffect(() => {
-    const subscription = combineLatest([clock$, channel$])
-      .pipe(
-        filter(([{ play }]: [IState, IChannel]) => play),
-      )
-      .subscribe(([{ step }, { steps, instrument, volume }]: [IState, IChannel]) => {
-        setSteps(steps);
-        setCurrentStep(step);
+  const sequence$ = combineLatest([clock$, channel$]).pipe(filter(([{ play }]: [IState, IChannel]) => play));
 
-        if (instrument && volume && steps[step]) {
-          // console.log('\n----PLAY----\n')
-          InstrumentConfig[instrument]?.trigger();
-        }
+  useObservableEffect(
+    sequence$,
+    ([{ step }, { steps, instrument, volume }]: [IState, IChannel]) => {
+      setSteps(steps);
+      setCurrentStep(step);
+
+      if (instrument && volume && steps[step]) {
+        // console.log('\n----PLAY----\n')
+        InstrumentConfig[instrument]?.trigger();
       }
-      );
-    return () => subscription.unsubscribe();
-  },
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  []);
+    }  
+  );
+
 
   return (
     <Box className={classes.root} border={1} width='590px'>

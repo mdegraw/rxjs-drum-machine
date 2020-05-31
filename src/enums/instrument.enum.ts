@@ -1,5 +1,15 @@
-import { playHiHat, playKick, playSnare } from "../utils/sounds.util";
-import { playToms, playMaracas, playClave, playCowbell, playRimshot, playConga, playClap } from './../utils/sounds.util';
+import {
+  playHiHat,
+  playKick,
+  playSnare,
+  playToms,
+  playMaracas,
+  playClave,
+  playCowbell,
+  playRimshot,
+  playConga,
+  playClap,
+} from './../utils/sounds.util';
 
 export enum Instrument {
   Kick = 'Kick',
