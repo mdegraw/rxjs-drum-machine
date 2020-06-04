@@ -33,7 +33,7 @@ export default function BpmControl({ bpm$ }: IBpmControlProp) {
     <Box display='flex' flexDirection='row'>
       <Slider
         min={10}
-        max={200}
+        max={250}
         className={classes.slider}
         value={bpm}
         onChange={(_: any, val: number | number[]) => { if (typeof val === 'number') setBpm(val)}}

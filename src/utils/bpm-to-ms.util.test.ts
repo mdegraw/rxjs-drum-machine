@@ -10,4 +10,4 @@ describe('bpmToMs', () => {
     const ms = bpmToMs(60000);
     expect(ms).toEqual(1);
   });
-})
+});
