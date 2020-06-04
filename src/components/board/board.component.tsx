@@ -73,7 +73,7 @@ export default function Board() {
         display='flex'
         flexDirection='row'
       >
-        <Typography variant='h5'>RxJS Step-Sequencer</Typography>
+        <Typography variant='h5'>RxJS Sequencer</Typography>
         <Box className={classes.bpmControl}><BpmControl bpm$={bpm$} /></Box>
       </Box>
     
@@ -95,7 +95,7 @@ export default function Board() {
           <Button
             variant='contained'
             color='primary'
-            disabled={channels.length > 9}
+            disabled={channels.length > 6}
             className={classes.button}
             startIcon={<AddIcon />}
             onClick={addChannel}

@@ -3,7 +3,7 @@ import { startWith, scan, switchMap, map, tap, publish } from 'rxjs/operators';
 import { bpmToMs } from './bpm-to-ms.util';
 import { IState, INITIAL_STATE } from '../interfaces/state.interface';
 
-export const clock = (boardEvents$: Observable<any>) =>  boardEvents$.pipe(
+export const clockPipeline = (boardEvents$: Observable<any>) => boardEvents$.pipe(
   startWith(INITIAL_STATE),
   scan((state: IState, curr: IState): IState => ({
       ...state,
@@ -21,5 +21,6 @@ export const clock = (boardEvents$: Observable<any>) =>  boardEvents$.pipe(
     )
     : NEVER,
   ),
-  publish(),
 );
+
+export const clock = (boardEvents$: Observable<any>) => clockPipeline(boardEvents$).pipe(publish()); 
