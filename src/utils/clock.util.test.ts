@@ -22,7 +22,7 @@ describe('clockPipeline', () => {
   });
 
   it('should emit state if play is `true`', async (done) => {
-    const boardEvents$ = new BehaviorSubject({ play: true, bpm: 100, });
+    const boardEvents$ = new BehaviorSubject({ play: true });
     const state = {
       step: 0,
       pauseStep: 0,
@@ -32,7 +32,6 @@ describe('clockPipeline', () => {
     const clockPipeline$ = clockPipeline(boardEvents$);
 
     clockPipeline$.pipe(take(1)).subscribe((stepState) => {
-      expect(stepState).toBeDefined();
       expect(stepState).toEqual(state);
       done();
     });
@@ -55,7 +54,6 @@ describe('clockPipeline', () => {
     const clockPipeline$ = clockPipeline(boardEvents$);
 
     clockPipeline$.pipe(take(2)).subscribe((stepState) => {
-      expect(stepState).toBeDefined();
       expect(stepState).toEqual(state);
       done();
     });
