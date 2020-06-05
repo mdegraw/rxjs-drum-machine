@@ -1,6 +1,6 @@
-# RxJS Step Sequencer
+# RxJS Drum Machine
 
-Simple Drum Machine/Step Sequencer using RxJS as an event pipeline/clock
+Simple Drum Machine using RxJS as an event pipeline/clock
 
 ## Available Scripts
 

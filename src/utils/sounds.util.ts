@@ -1,6 +1,6 @@
 import { Howl } from 'howler';
 
-const baseUrl = process.env.NODE_ENV === 'production' ? '/step-sequencer/sounds' : '/sounds';
+const baseUrl = process.env.NODE_ENV === 'production' ? '/rxjs-drum-machine/sounds' : '/sounds';
 
 const snare = new Howl({ src: [`${baseUrl}/snare.mp3`] });
 const kick = new Howl({ src: [`${baseUrl}/kick.mp3`] });

@@ -1,6 +1,6 @@
 {
-  "short_name": "RxJS Sequencer",
-  "name": "RxJS Sequencer",
+  "short_name": "RxJS Drum Machine",
+  "name": "RxJS Drum Machine",
   "icons": [
     {
       "src": "favicon.ico",
