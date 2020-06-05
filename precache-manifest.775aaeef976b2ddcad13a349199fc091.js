@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0237050b0d4cf96bed8b36f7134ad513",
+    "revision": "4bb03e9c9dfa67a5c2866b4a86695a6f",
     "url": "/step-sequencer/index.html"
   },
   {
-    "revision": "816d1014b8689b2eca60",
+    "revision": "eb51c2e1e5b4def493b2",
     "url": "/step-sequencer/static/css/main.16b73141.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/step-sequencer/static/js/2.d491bc87.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "816d1014b8689b2eca60",
-    "url": "/step-sequencer/static/js/main.135681dc.chunk.js"
+    "revision": "eb51c2e1e5b4def493b2",
+    "url": "/step-sequencer/static/js/main.9c6ce50b.chunk.js"
   },
   {
     "revision": "b25524cb71dd52d30650",
