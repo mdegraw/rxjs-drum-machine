@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/step-sequencer/static/css/main.16b73141.chunk.css",
-    "main.js": "/step-sequencer/static/js/main.cbd6cf78.chunk.js",
-    "main.js.map": "/step-sequencer/static/js/main.cbd6cf78.chunk.js.map",
-    "runtime-main.js": "/step-sequencer/static/js/runtime-main.25590729.js",
-    "runtime-main.js.map": "/step-sequencer/static/js/runtime-main.25590729.js.map",
-    "static/js/2.d491bc87.chunk.js": "/step-sequencer/static/js/2.d491bc87.chunk.js",
-    "static/js/2.d491bc87.chunk.js.map": "/step-sequencer/static/js/2.d491bc87.chunk.js.map",
-    "index.html": "/step-sequencer/index.html",
-    "precache-manifest.97e63b030e1dc92fb41cc55d9d79e85a.js": "/step-sequencer/precache-manifest.97e63b030e1dc92fb41cc55d9d79e85a.js",
-    "service-worker.js": "/step-sequencer/service-worker.js",
-    "static/css/main.16b73141.chunk.css.map": "/step-sequencer/static/css/main.16b73141.chunk.css.map",
-    "static/js/2.d491bc87.chunk.js.LICENSE.txt": "/step-sequencer/static/js/2.d491bc87.chunk.js.LICENSE.txt"
+    "main.css": "/rxjs-drum-machine/static/css/main.16b73141.chunk.css",
+    "main.js": "/rxjs-drum-machine/static/js/main.09fc2288.chunk.js",
+    "main.js.map": "/rxjs-drum-machine/static/js/main.09fc2288.chunk.js.map",
+    "runtime-main.js": "/rxjs-drum-machine/static/js/runtime-main.bce9fc83.js",
+    "runtime-main.js.map": "/rxjs-drum-machine/static/js/runtime-main.bce9fc83.js.map",
+    "static/js/2.435aef53.chunk.js": "/rxjs-drum-machine/static/js/2.435aef53.chunk.js",
+    "static/js/2.435aef53.chunk.js.map": "/rxjs-drum-machine/static/js/2.435aef53.chunk.js.map",
+    "index.html": "/rxjs-drum-machine/index.html",
+    "precache-manifest.66b4f5f691aa3db3341c0b04d09b67bc.js": "/rxjs-drum-machine/precache-manifest.66b4f5f691aa3db3341c0b04d09b67bc.js",
+    "service-worker.js": "/rxjs-drum-machine/service-worker.js",
+    "static/css/main.16b73141.chunk.css.map": "/rxjs-drum-machine/static/css/main.16b73141.chunk.css.map",
+    "static/js/2.435aef53.chunk.js.LICENSE.txt": "/rxjs-drum-machine/static/js/2.435aef53.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.25590729.js",
-    "static/js/2.d491bc87.chunk.js",
+    "static/js/runtime-main.bce9fc83.js",
+    "static/js/2.435aef53.chunk.js",
     "static/css/main.16b73141.chunk.css",
-    "static/js/main.cbd6cf78.chunk.js"
+    "static/js/main.09fc2288.chunk.js"
   ]
 }
