@@ -1,15 +1,17 @@
 import { Howl } from 'howler';
 
-const snare = new Howl({ src: ['/sounds/snare.mp3'] });
-const kick = new Howl({ src: ['/sounds/kick.mp3'] });
-const hihat = new Howl({ src: ['/sounds/hihat.mp3'] });
-const maracas = new Howl({ src: ['/sounds/maracas.mp3'] });
-const clave = new Howl({ src: ['/sounds/clave.mp3'] });
-const rimshot = new Howl({ src: ['/sounds/rimshot.mp3'] });
-const toms = new Howl({ src: ['/sounds/toms.mp3'] });
-const clap = new Howl({ src: ['/sounds/clap.mp3'] });
-const conga = new Howl({ src: ['/sounds/conga.mp3'] });
-const cowbell = new Howl({ src: ['/sounds/cowbell.mp3'] });
+const baseUrl = process.env.NODE_ENV === 'production' ? '/step-sequencer/sounds' : '/sounds';
+
+const snare = new Howl({ src: [`${baseUrl}/snare.mp3`] });
+const kick = new Howl({ src: [`${baseUrl}/kick.mp3`] });
+const hihat = new Howl({ src: [`${baseUrl}/hihat.mp3`] });
+const maracas = new Howl({ src: [`${baseUrl}/maracas.mp3`] });
+const clave = new Howl({ src: [`${baseUrl}/clave.mp3`] });
+const rimshot = new Howl({ src: [`${baseUrl}/rimshot.mp3`] });
+const toms = new Howl({ src: [`${baseUrl}/toms.mp3`] });
+const clap = new Howl({ src: [`${baseUrl}/clap.mp3`] });
+const conga = new Howl({ src: [`${baseUrl}/conga.mp3`] });
+const cowbell = new Howl({ src: [`${baseUrl}/cowbell.mp3`] });
 
 export const playKick = () => {
   kick.play();
