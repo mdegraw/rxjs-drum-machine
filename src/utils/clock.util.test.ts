@@ -25,7 +25,7 @@ describe('clockPipeline', () => {
     const state = {
       step: 0,
       pauseStep: 0,
-      bpm: 100,
+      bpm: 130,
       play: true,
     }
     const clockPipeline$ = clockPipeline(boardEvents$);

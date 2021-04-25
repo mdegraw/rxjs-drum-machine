@@ -1,5 +1,5 @@
 import { interval, Observable, NEVER } from 'rxjs';
-import { startWith, scan, switchMap, map, tap, publish } from 'rxjs/operators';
+import { startWith, scan, switchMap, map, publish } from 'rxjs/operators';
 import { bpmToMs } from './bpm-to-ms.util';
 import { IState, INITIAL_STATE } from '../interfaces/state.interface';
 
@@ -14,10 +14,11 @@ export const clockPipeline = (boardEvents$: Observable<any>) => boardEvents$.pip
   ),
   switchMap((state: IState) => state.play
     ? interval(bpmToMs(state.bpm)).pipe(
-        tap((i) => {
+        map((i) => {
           state.step = (i + state.pauseStep) % 16;
+
+          return state;
         }),
-        map(() => state),
     )
     : NEVER,
   ),
