@@ -9,5 +9,5 @@ export const INITIAL_STATE: IState = {
   play: false,
   step: 0,
   pauseStep: 0,
-  bpm: 100,
+  bpm: 130,
 };
