@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Observable, combineLatest, BehaviorSubject } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { filter, withLatestFrom } from 'rxjs/operators';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
@@ -36,7 +36,8 @@ export default function Sequence({ clock$, channel$ }: ISequenceProps) {
   const classes = useStyles();
 
   const updateSteps = (step: number, isOn: boolean) => { 
-    const tempSteps  = steps;
+    const tempSteps = steps;
+
     tempSteps[step] = isOn;
     channel$.next({
       ...channel$.value,
@@ -44,7 +45,7 @@ export default function Sequence({ clock$, channel$ }: ISequenceProps) {
     });
   };
 
-  const sequence$ = combineLatest([clock$, channel$]).pipe(filter(([{ play }]: [IState, IChannel]) => play));
+  const sequence$ = clock$.pipe(withLatestFrom(channel$), filter(([{ play }]: [IState, IChannel]) => play));
 
   useObservableEffect(
     sequence$,
@@ -53,12 +54,11 @@ export default function Sequence({ clock$, channel$ }: ISequenceProps) {
       setCurrentStep(step);
 
       if (instrument && volume && steps[step]) {
-        // console.log('\n----PLAY----\n')
+        // console.log(`\n----PLAY----step\n`);
         InstrumentConfig[instrument]?.trigger();
       }
     }  
   );
-
 
   return (
     <Box className={classes.root} border={1} width='590px'>
