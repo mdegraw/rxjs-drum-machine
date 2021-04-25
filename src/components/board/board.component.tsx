@@ -45,17 +45,19 @@ const boardEvents$ = merge(
 );
 const clock$ = clock(boardEvents$);
 
-const updatePlay = (isPlay: boolean) => {
-  play$.next({ play: isPlay });
-};
-
 export default function Board() {
   useObservableEffect(clock$, noop, () => (clock$ as ConnectableObservable<IState>).connect());
 
+  const classes = useStyles();
+
   const DEFAULT_CHANNELS = [...Array(1)].map((_, i) => <Channel key={i} id={i} clock$={clock$} />);
 
-  const [channels, setChannels] = useState(DEFAULT_CHANNELS)
-  const classes = useStyles();
+  const [channels, setChannels] = useState(DEFAULT_CHANNELS);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const updatePlay = (isPlay: boolean) => {
+    setIsPlaying(isPlay);
+    play$.next({ play: isPlay });
+  };
 
   const addChannel = () => setChannels([...channels, (<Channel key={channels.length + 1} id={channels.length + 1}  clock$={clock$} />)]);
   // const removeChannel = (i: number) => setChannels([...channels.slice(0, i), ...channels.slice(i + 1)]);
@@ -108,6 +110,7 @@ export default function Board() {
           color='secondary'
           className={classes.button}
           startIcon={<PauseIcon />}
+          disabled={!isPlaying}
           onClick={() => updatePlay(false)}
         >
           Pause
@@ -116,6 +119,7 @@ export default function Board() {
           variant='contained'
           color='primary'
           className={classes.button}
+          disabled={isPlaying}
           startIcon={<PlayArrowIcon />}
           onClick={() => updatePlay(true)}
         >
